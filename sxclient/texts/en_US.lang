@@ -1,0 +1,116 @@
+toolbox.menu.cancel=Cancel
+toolbox.menu.add=Add
+toolbox.menu.remove=Remove
+toolbox.menu.save=Save
+
+toolbox.menu.player=Player
+toolbox.menu.player.menu=Player menu
+toolbox.menu.player.game_mode=Game mode
+toolbox.menu.player.survival=Survival
+toolbox.menu.player.creative=Creative
+toolbox.menu.player.health=Health
+toolbox.menu.player.heal=Heal
+toolbox.menu.player.kill=Kill
+toolbox.menu.player.abilities=Abilities
+toolbox.menu.player.fly=Fly
+toolbox.menu.player.no_clip=No-clip
+toolbox.menu.player.level=Level
+toolbox.menu.player.set_max=Set max
+toolbox.menu.player.sprint=Automatically sprint
+toolbox.menu.player.debug_info=Show debug info
+
+toolbox.menu.world=World
+toolbox.menu.world.menu=World menu
+toolbox.menu.world.time=Time
+toolbox.menu.world.time.day=Day
+toolbox.menu.world.time.night=Night
+toolbox.menu.world.weather=Weather
+toolbox.menu.world.weather.normal=Normal
+toolbox.menu.world.weather.rainy=Rainy
+toolbox.menu.world.weather.stormy=Stormy
+toolbox.menu.world.game_rules=Game rules
+toolbox.menu.world.game_rules.keep_inventory=Keep inventory
+toolbox.menu.world.game_rules.drop_items=Drop items
+toolbox.menu.world.game_rules.daylight_cycle=Do daylight cycle
+toolbox.menu.world.game_rules.player_damage=Player damage
+toolbox.menu.world.game_rules.mob_griefing=Allow mob griefing
+toolbox.menu.world.game_rules.pvp=Enable PvP
+toolbox.menu.world.spawn=Set spawn position
+toolbox.menu.world.game_speed=Game speed
+
+toolbox.menu.teleports=Teleports
+toolbox.menu.teleports.menu=Teleports menu
+toolbox.menu.teleports.add=Add new teleport
+toolbox.menu.teleports.name=Teleport name
+toolbox.menu.teleports.edit=Edit the teleport
+
+toolbox.menu.potion_effects=Potion effects
+toolbox.menu.potion_effects.add=Add id potion effect
+toolbox.menu.potion_effects.amplifier=Amplifier
+toolbox.menu.potion_effects.duration=Duration
+
+toolbox.menu.inventory=Inventory
+toolbox.menu.inventory.menu=Inventory menu
+toolbox.menu.inventory.quick_add=Quick add
+toolbox.menu.inventory.find=Find any item
+toolbox.menu.inventory.repair=Repair
+toolbox.menu.inventory.add_preset=Add preset
+toolbox.menu.inventory.preset.diamond=Full diamond item set
+
+toolbox.menu.mods=Mods
+toolbox.menu.mods.settings=Mods settings
+toolbox.menu.mods.commands_mode=Commands mode
+toolbox.menu.mods.xray.settings=XRay settings
+toolbox.menu.mods.xray.enable=Enable xray
+toolbox.menu.mods.xray.players=Render players
+toolbox.menu.mods.xray.blocks=Visible blocks
+toolbox.menu.mods.minimap.settings=Minimap settings
+toolbox.menu.mods.minimap.enable=Enable minimap
+toolbox.menu.mods.minimap.mobs=Render mobs
+toolbox.menu.mods.minimap.players=Render players
+toolbox.menu.mods.minimap.waypoints=Draw waypoints icons
+toolbox.menu.mods.minimap.coords=Show coordinates
+toolbox.menu.mods.minimap.scale=Minimap scale
+toolbox.menu.mods.minimap.radius=Minimap radius
+toolbox.menu.mods.waypoints=Render Waypoints
+toolbox.menu.mods.treecapitator=Enable TreeCapitator
+toolbox.menu.mods.armor_hud=Show armor hud
+toolbox.menu.mods.health_bars=Render health bars
+
+toolbox.menu.cheats=Hacks
+toolbox.menu.cheats.settings=Hacks settings
+toolbox.menu.cheats.player=Player
+toolbox.menu.cheats.player.auto_walk=Automatically walk
+toolbox.menu.cheats.player.immortality=Immortality
+toolbox.menu.cheats.player.tap_teleport=Tap TP
+toolbox.menu.cheats.player.high_jump=HighJump
+toolbox.menu.cheats.player.one_tap_stack=One-tap stack
+toolbox.menu.cheats.player.autosprint=ToggleSprint
+toolbox.menu.cheats.player.twerk=Twerk
+toolbox.menu.cheats.player.jetpack=JetPack
+toolbox.menu.cheats.player.glide=Glide (Bypass LifeBoat)
+toolbox.menu.cheats.player.airjump=AirJump
+toolbox.menu.cheats.player.jetpackb=JetPack (Bypass)
+
+toolbox.menu.cheats.combat=Combat
+toolbox.menu.cheats.combat.killaura=Killaura
+toolbox.menu.cheats.combat.mob_killaura=Killaura affect mobs
+toolbox.menu.cheats.combat.instakill=Instakill (Survival)
+toolbox.menu.cheats.combat.auto_leave=Leave when < 8 hearts left
+
+toolbox.menu.rapid_build=Rapid build
+toolbox.menu.rapid_build.enable=Enable rapid build
+toolbox.menu.rapid_build.type=Type
+toolbox.menu.rapid_build.selection.none=None
+toolbox.menu.rapid_build.selection.cuboid=Cuboid
+toolbox.menu.rapid_build.selection.sphere=Sphere
+toolbox.menu.rapid_build.selection.ellipsoid=Ellipsoid
+toolbox.menu.rapid_build.selection.cylinder=Cylinder
+toolbox.menu.rapid_build.selection.polygon=Polygon
+toolbox.menu.rapid_build.selection.paste=Paste
+toolbox.menu.rapid_build.copy=Copy
+toolbox.menu.rapid_build.replace_blocks=Replace blocks
+toolbox.menu.rapid_build.render_selections=Render selections
+toolbox.menu.rapid_build.show_tip=Show tip
+
+tile.luckyblock.name=Lucky Block

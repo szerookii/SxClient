@@ -1,0 +1,178 @@
+{
+  "namespace": "tb_cheats_panel",
+  "main_panel@tb_common.main_panel": {
+    "$text_name": "toolbox.menu.cheats.settings",
+    "$child_control": "tb_cheats_panel.scrolling_panel",
+    "$panel_name": "#cheats_panel"
+  },
+
+  "cheats_icon@tb_common.gui_base": {
+    "uv": [41, 69],
+    "uv_size": [11, 18],
+    "size": [11, 18]
+  },
+
+  "menu_button@tb_common.category_button": {
+    "size": [ "100%", 24 ],
+    "$button_text": "toolbox.menu.cheats",
+    "$icon": "tb_cheats_panel.cheats_icon"
+  },
+
+  "scrolling_panel@common.scrolling_panel": {
+    "size": [ "100%", "100%" ],
+    "anchor_from": "top_left",
+    "anchor_to": "top_left",
+    "$scrolling_content": "tb_cheats_panel.main_panel_content",
+    "$show_background": false
+  },
+
+  "main_panel_content": {
+    "type": "stack_panel",
+    "orientation": "vertical",
+    "size": [ "100%-8px", "100%c + 8px" ],
+    "offset": [ 4, 4 ],
+    "anchor_from": "top_left",
+    "anchor_to": "top_left",
+    "controls": [
+      {
+        "player_category_label": {
+          "type": "label",
+          "text": "toolbox.menu.cheats.player"
+        }
+      },
+      {
+        "autowalk@tb_common.toggle_with_label": {
+          "$label_text": "toolbox.menu.cheats.player.auto_walk",
+          "$toggle_name": "toggle.autowalk",
+          "$toggle_state_binding_name": "#autowalk_enabled"
+        }
+      },
+      {
+        "tap_teleport@tb_common.toggle_with_label": {
+          "$label_text": "toolbox.menu.cheats.player.tap_teleport",
+          "$toggle_name": "toggle.tap_teleport",
+          "$toggle_state_binding_name": "#tap_teleport_enabled"
+        }
+      },
+      {
+        "immortality@tb_common.toggle_with_label": {
+          "$label_text": "toolbox.menu.cheats.player.immortality",
+          "$toggle_name": "toggle.immortality",
+          "$toggle_state_binding_name": "#immortality_enabled",
+          "bindings": [
+            {
+              "binding_name": "#is_online",
+              "binding_name_override": "#visible",
+              "binding_type": "global",
+              "binding_condition": "none"
+            }
+          ]
+        }
+      },
+      {
+        "high_jump@tb_common.toggle_with_label": {
+          "$label_text": "toolbox.menu.cheats.player.high_jump",
+          "$toggle_name": "toggle.high_jump",
+          "$toggle_state_binding_name": "#high_jump_enabled"
+        }
+      },
+      {
+        "auto_sprint@tb_common.toggle_with_label": {
+          "$label_text": "toolbox.menu.cheats.player.autosprint",
+          "$toggle_name": "toggle.auto_sprint",
+          "$toggle_state_binding_name": "#auto_sprint_enabled"
+        }
+      },
+      {
+        "twerk@tb_common.toggle_with_label": {
+          "$label_text": "toolbox.menu.cheats.player.twerk",
+          "$toggle_name": "toggle.twerk",
+          "$toggle_state_binding_name": "#twerk_enabled"
+        }
+      },
+      {
+        "jetpack@tb_common.toggle_with_label": {
+          "$label_text": "toolbox.menu.cheats.player.jetpack",
+          "$toggle_name": "toggle.jetpack",
+          "$toggle_state_binding_name": "#jetpack_enabled"
+        }
+      },
+      {
+        "glide@tb_common.toggle_with_label": {
+          "$label_text": "toolbox.menu.cheats.player.glide",
+          "$toggle_name": "toggle.glide",
+          "$toggle_state_binding_name": "#glide_enabled"
+        }
+      },
+      {
+        "airjump@tb_common.toggle_with_label": {
+          "$label_text": "toolbox.menu.cheats.player.airjump",
+          "$toggle_name": "toggle.airjump",
+          "$toggle_state_binding_name": "#airjump_enabled"
+        }
+      },
+      {
+        "jetpackb@tb_common.toggle_with_label": {
+          "$label_text": "toolbox.menu.cheats.player.jetpackb",
+          "$toggle_name": "toggle.jetpackb",
+          "$toggle_state_binding_name": "#jetpackb_enabled"
+        }
+      },
+      {
+        "padding@tb_common.padding": {}
+      },
+      {
+        "combat_category_label": {
+          "type": "label",
+          "text": "toolbox.menu.cheats.combat"
+        }
+      },
+      {
+        "killaura@tb_common.toggle_with_label": {
+          "$label_text": "toolbox.menu.cheats.combat.killaura",
+          "$toggle_name": "toggle.killaura",
+          "$toggle_state_binding_name": "#killaura_enabled"
+        }
+      },
+      {
+        "mob_killaura@tb_common.toggle_with_label": {
+          "$label_text": "toolbox.menu.cheats.combat.mob_killaura",
+          "$toggle_name": "toggle.mob_killaura",
+          "$toggle_state_binding_name": "#mob_killaura_enabled"
+        }
+      },
+      {
+        "killaura_slider@tb_common.slider_with_text_box": {
+          "$slider_name": "slider.killaura",
+          "$slider_value_binding_name": "#kaDistance",
+          "$text_edit_box_content_binding_name": "#text_box_killaura",
+          "$slider_property_bag": {
+            "#slider_steps": 8
+          }
+        }
+      },
+      {
+        "instakill@tb_common.toggle_with_label": {
+          "$label_text": "toolbox.menu.cheats.combat.instakill",
+          "$toggle_name": "toggle.instakill",
+          "$toggle_state_binding_name": "#instakill_enabled",
+          "bindings": [
+            {
+              "binding_name": "#is_online",
+              "binding_name_override": "#visible",
+              "binding_type": "global",
+              "binding_condition": "none"
+            }
+          ]
+        }
+      },
+      {
+        "autoleave@tb_common.toggle_with_label": {
+          "$label_text": "toolbox.menu.cheats.combat.auto_leave",
+          "$toggle_name": "toggle.autoleave",
+          "$toggle_state_binding_name": "#autoleave_enabled"
+        }
+      }
+    ]
+  }
+}
