@@ -40,7 +40,8 @@ local b = 0
 
 function drawName(context)
     local font = context:getFont()
-    
+	
+    -- À bad code for a bad RGB
     if r <= 255 and g == 0 and b == 0 then
 		r = r + 1
 	end
