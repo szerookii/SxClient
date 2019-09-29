@@ -117,6 +117,22 @@
       {
         "combat_category_label": {
           "type": "label",
+          "text": "toolbox.menu.cheats.exploits"
+        }
+      },
+      {
+        "crasher@tb_common.toggle_with_label": {
+          "$label_text": "toolbox.menu.cheats.exploits.crasher",
+          "$toggle_name": "toggle.crasher",
+          "$toggle_state_binding_name": "#crasher_enabled"
+        }
+      },
+      {
+        "padding@tb_common.padding": {}
+      },
+      {
+        "combat_category_label": {
+          "type": "label",
           "text": "toolbox.menu.cheats.combat"
         }
       },

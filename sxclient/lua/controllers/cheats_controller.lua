@@ -9,7 +9,8 @@ config.isTwerkEnabled = false
 config.isKillauraEnabled = false
 config.isJetpackEnabled = false
 config.isGlideEnabled = false
-config.isAirjumpEnabled = false
+config.isAutoclickerEnabled = false
+config.isCrasherEnabled = false
 
 settings = {}
 settings.isMobKillaura = true
@@ -27,7 +28,7 @@ MTN.isKillauraEnabled = "KillAura"
 MTN.isJetpackEnabled = "JetPack"
 MTN.isGlideEnabled = "Glide"
 MTN.isAirjumpEnabled = "AirJump"
-MTN.isJetpackBEnabled = "JetPack (Bypass)"
+MTN.isCrasherEnabled = "Crasher"
 
 local presets = { 3, 4, 5, 6, 7, 8, 9, 10 }
 local tickJet = 0
@@ -74,7 +75,7 @@ function drawName(context)
     font:drawTransformed(context:getScreenContext(), text, x + 16 * scale + spacing * scale, y + textVerticalSpacing * scale, 1, 1, 1, 1, 0, font:getLineLength(text, 1, false), false, textScale)
     
     -- Set variables for 2nd text
-    text = "Private Client"
+    text = "Made by Seyz"
     textScale = 1
     y = 18
     
@@ -87,14 +88,15 @@ function drawName(context)
     
     -- Write module list lol
     text = ""
-    x = 550
-    y = 0
+    x = 640
+    y = 2
     
     for i, v in pairs(config) do
         if config[i] ~= false then
             text = MTN[i]
             y = y + 15
-            font:drawTransformed(context:getScreenContext(), text, x + 16 * scale + spacing * scale, y + textVerticalSpacing * scale, r, g, b, 1, 0, font:getLineLength(text, 1, false), false, textScale)
+            local textWidth = font:getLineLength(text, 1, false)
+            font:drawTransformed(context:getScreenContext(), text, x - textWidth, y + textVerticalSpacing * scale, r, g, b, 1, 0, font:getLineLength(text, 1, false), false, textScale)
         end
     end
 end
@@ -220,6 +222,17 @@ local function glide()
     player:setVelocity(vX, y, vZ)
 end
 
+local function crasher()
+    if not config.isCrasherEnabled then
+        return
+    end
+    
+    local player = minecraft.clientinstance:getLocalPlayer()
+    local x = math.floor(math.random(1, 10000))
+    local y = math.floor(math.random(1, 10000))
+    local z = math.floor(math.random(1, 10000))
+    player:teleportTo(x, y, z)
+end
 
 ---@param nid networkidentifier
 ---@param data string
@@ -307,6 +320,7 @@ local function init(controller)
     registerCheat(controller, "isJetpackEnabled", "toggle.jetpack", "#jetpack_enabled")
     registerCheat(controller, "isGlideEnabled", "toggle.glide", "#glide_enabled")
     registerCheat(controller, "isAirjumpEnabled", "toggle.airjump", "#airjump_enabled")
+    registerCheat(controller, "isCrasherEnabled", "toggle.crasher", "#crasher_enabled")
 
     --Combat
     registerServerCheat(controller, "isInstakillEnabled", "toggle.instakill", "#instakill_enabled", "instakill");
@@ -323,6 +337,7 @@ hooks.addHook("ClientInstance.tickInput", cheatsMobKillauraHook)
 hooks.addHook("ClientInstance.renderGui", renderTradeHook)
 hooks.addHook("ClientInstance.tickInput", jetpack)
 hooks.addHook("ClientInstance.tickInput", glide)
+hooks.addHook("ClientInstance.tickInput", crasher)
 
 return {
     init = init

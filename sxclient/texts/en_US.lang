@@ -91,6 +91,9 @@ toolbox.menu.cheats.player.jetpack=JetPack
 toolbox.menu.cheats.player.glide=Glide (Bypass LifeBoat)
 toolbox.menu.cheats.player.airjump=AirJump
 
+toolbox.menu.cheats.exploits=Exploits
+toolbox.menu.cheats.exploits.crasher=Crasher
+
 toolbox.menu.cheats.combat=Combat
 toolbox.menu.cheats.combat.killaura=Killaura
 toolbox.menu.cheats.combat.mob_killaura=Killaura affect mobs
