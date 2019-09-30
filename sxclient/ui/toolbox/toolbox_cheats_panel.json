@@ -112,6 +112,13 @@
         }
       },
       {
+        "esp@tb_common.toggle_with_label": {
+          "$label_text": "toolbox.menu.cheats.player.esp",
+          "$toggle_name": "toggle.esp",
+          "$toggle_state_binding_name": "#esp_enabled"
+        }
+      },
+      {
         "padding@tb_common.padding": {}
       },
       {

@@ -88,11 +88,12 @@ toolbox.menu.cheats.player.one_tap_stack=One-tap stack
 toolbox.menu.cheats.player.autosprint=ToggleSprint
 toolbox.menu.cheats.player.twerk=Twerk
 toolbox.menu.cheats.player.jetpack=JetPack
-toolbox.menu.cheats.player.glide=Glide (Bypass LifeBoat)
+toolbox.menu.cheats.player.glide=Glide
 toolbox.menu.cheats.player.airjump=AirJump
+toolbox.menu.cheats.player.esp=ESP
 
 toolbox.menu.cheats.exploits=Exploits
-toolbox.menu.cheats.exploits.crasher=Crasher
+toolbox.menu.cheats.exploits.crasher=ServerCrasher
 
 toolbox.menu.cheats.combat=Combat
 toolbox.menu.cheats.combat.killaura=Killaura

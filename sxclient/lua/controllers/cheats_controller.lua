@@ -9,8 +9,8 @@ config.isTwerkEnabled = false
 config.isKillauraEnabled = false
 config.isJetpackEnabled = false
 config.isGlideEnabled = false
-config.isAutoclickerEnabled = false
 config.isCrasherEnabled = false
+config.isEspEnabled = false
 
 settings = {}
 settings.isMobKillaura = true
@@ -28,7 +28,8 @@ MTN.isKillauraEnabled = "KillAura"
 MTN.isJetpackEnabled = "JetPack"
 MTN.isGlideEnabled = "Glide"
 MTN.isAirjumpEnabled = "AirJump"
-MTN.isCrasherEnabled = "Crasher"
+MTN.isCrasherEnabled = "ServerCrasher"
+MTN.isEspEnabled = "ESP"
 
 local presets = { 3, 4, 5, 6, 7, 8, 9, 10 }
 local tickJet = 0
@@ -42,7 +43,7 @@ local b = 0
 function drawName(context)
     local font = context:getFont()
 	
-    -- À bad code for a bad RGB
+    -- A bad code for a bad RGB
     if r <= 255 and g == 0 and b == 0 then
 		r = r + 1
 	end
@@ -89,14 +90,14 @@ function drawName(context)
     -- Write module list lol
     text = ""
     x = 640
-    y = 2
+    y = 1
     
     for i, v in pairs(config) do
         if config[i] ~= false then
             text = MTN[i]
-            y = y + 15
+            y = y + 10
             local textWidth = font:getLineLength(text, 1, false)
-            font:drawTransformed(context:getScreenContext(), text, x - textWidth, y + textVerticalSpacing * scale, r, g, b, 1, 0, font:getLineLength(text, 1, false), false, textScale)
+            font:drawTransformed(context:getScreenContext(), text, x - textWidth, y, r, g, b, 1, 0, font:getLineLength(text, 1, false), false, textScale)
         end
     end
 end
@@ -234,6 +235,36 @@ local function crasher()
     player:teleportTo(x, y, z)
 end
 
+local function esp(event)
+    if not config.isEspEnabled then
+        return
+    end
+    
+    local context = event:getContext()
+    local localPlayer = minecraft.clientinstance:getLocalPlayer()
+
+    context:glClear(0x00000100)
+    local x, y, z = context:getCameraTargetPosition()
+    local matrix = context:pushToViewMatrix()
+    matrix:translate(-x, -y, -z)
+    
+    local level = minecraft.clientinstance:getLevel()
+    local t = context:getTessellator()
+    t:begin()
+    t:color(r, g, b, 0.2);
+    level:forEachPlayer(function(player)
+        if player ~= localPlayer then
+            local posX, posY, posZ = player:getInterpolatedPos(context:getDeltaTime())
+            posY = posY - 1.64
+            drawBox(t, posX, posY, posZ, 0.5, 2)
+        end
+    end)
+    t:draw(context:getScreenContext(), minecraft.rendermaterialgroup.common:getMaterial("ui_fill_gradient"))
+    matrix:release()
+end
+
+-- Others
+
 ---@param nid networkidentifier
 ---@param data string
 function minecraft.packet.immortalityStateChanged(nid, data)
@@ -321,12 +352,11 @@ local function init(controller)
     registerCheat(controller, "isGlideEnabled", "toggle.glide", "#glide_enabled")
     registerCheat(controller, "isAirjumpEnabled", "toggle.airjump", "#airjump_enabled")
     registerCheat(controller, "isCrasherEnabled", "toggle.crasher", "#crasher_enabled")
-
-    --Combat
     registerServerCheat(controller, "isInstakillEnabled", "toggle.instakill", "#instakill_enabled", "instakill");
     registerCheat(controller, "isKillauraEnabled", "toggle.killaura", "#killaura_enabled")
     registerSettings(controller, "isMobKillaura", "toggle.mob_killaura", "#mob_killaura_enabled")
     registerSlider(controller, "killauraDistance", "slider.killaura", "#kaDistance", "#text_box_killaura")
+    registerCheat(controller, "isEspEnabled", "toggle.esp", "#esp_enabled")
 end
 
 hooks.addHook("MoveInputHandler.tick", cheatsMoveHook)
@@ -338,6 +368,75 @@ hooks.addHook("ClientInstance.renderGui", renderTradeHook)
 hooks.addHook("ClientInstance.tickInput", jetpack)
 hooks.addHook("ClientInstance.tickInput", glide)
 hooks.addHook("ClientInstance.tickInput", crasher)
+hooks.addHook("ClientInstance.renderGame", esp)
+
+function drawBox(t, x, y, z, width, height)
+    -- bottom
+    t:vertex(x - width, y, z - width);
+    t:vertex(x + width, y, z - width);
+    t:vertex(x + width, y, z + width);
+    t:vertex(x - width, y, z + width);
+
+    t:vertex(x - width, y, z + width);
+    t:vertex(x + width, y, z + width);
+    t:vertex(x + width, y, z - width);
+    t:vertex(x - width, y, z - width);
+
+    -- top
+    t:vertex(x - width, y + height, z - width);
+    t:vertex(x + width, y + height, z - width);
+    t:vertex(x + width, y + height, z + width);
+    t:vertex(x - width, y + height, z + width);
+
+    t:vertex(x - width, y + height, z + width);
+    t:vertex(x + width, y + height, z + width);
+    t:vertex(x + width, y + height, z - width);
+    t:vertex(x - width, y + height, z - width);
+
+    -- sides
+    t:vertex(x - width, y, z - width);
+    t:vertex(x - width, y + height, z - width);
+    t:vertex(x + width, y + height, z - width);
+    t:vertex(x + width, y, z - width);
+
+    t:vertex(x + width, y, z - width);
+    t:vertex(x + width, y + height, z - width);
+    t:vertex(x - width, y + height, z - width);
+    t:vertex(x - width, y, z - width);
+
+
+    t:vertex(x + width, y, z - width);
+    t:vertex(x + width, y + height, z - width);
+    t:vertex(x + width, y + height, z + width);
+    t:vertex(x + width, y, z + width);
+
+    t:vertex(x + width, y, z + width);
+    t:vertex(x + width, y + height, z + width);
+    t:vertex(x + width, y + height, z - width);
+    t:vertex(x + width, y, z - width);
+
+
+    t:vertex(x + width, y, z + width);
+    t:vertex(x + width, y + height, z + width);
+    t:vertex(x - width, y + height, z + width);
+    t:vertex(x - width, y, z + width);
+
+    t:vertex(x - width, y, z + width);
+    t:vertex(x - width, y + height, z + width);
+    t:vertex(x + width, y + height, z + width);
+    t:vertex(x + width, y, z + width);
+
+
+    t:vertex(x - width, y, z + width);
+    t:vertex(x - width, y + height, z + width);
+    t:vertex(x - width, y + height, z - width);
+    t:vertex(x - width, y, z - width);
+
+    t:vertex(x - width, y, z - width);
+    t:vertex(x - width, y + height, z - width);
+    t:vertex(x - width, y + height, z + width);
+    t:vertex(x - width, y, z + width);
+end
 
 return {
     init = init
