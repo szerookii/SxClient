@@ -370,6 +370,7 @@ hooks.addHook("ClientInstance.tickInput", glide)
 hooks.addHook("ClientInstance.tickInput", crasher)
 hooks.addHook("ClientInstance.renderGame", esp)
 
+-- From Xray mod.
 function drawBox(t, x, y, z, width, height)
     -- bottom
     t:vertex(x - width, y, z - width);
