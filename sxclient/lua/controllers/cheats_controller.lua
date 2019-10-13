@@ -11,6 +11,7 @@ config.isJetpackEnabled = false
 config.isGlideEnabled = false
 config.isCrasherEnabled = false
 config.isEspEnabled = false
+config.isBFlyEnabled = false
 
 settings = {}
 settings.isMobKillaura = true
@@ -30,38 +31,36 @@ MTN.isGlideEnabled = "Glide"
 MTN.isAirjumpEnabled = "AirJump"
 MTN.isCrasherEnabled = "ServerCrasher"
 MTN.isEspEnabled = "ESP"
+MTN.isBFlyEnabled = "Bypass Glide [SNEAK]"
 
 local presets = { 3, 4, 5, 6, 7, 8, 9, 10 }
 local tickJet = 0
 local tickNum = 0
 local tickNumMob = 0
+local tickGlide = 0
 
-local r = 0
+local r = 255
 local g = 0
 local b = 0
 
 function drawName(context)
     local font = context:getFont()
 	
-    -- A bad code for a bad RGB
-    if r <= 255 and g == 0 and b == 0 then
-		r = r + 1
-	end
-	if r == 255 and b == 0 and g <= 255 then
-		g = g + 1
-	end
-	if r == 255 and g == 255 and b <= 255 then
-		b = b + 1
-	end
-	if b == 255 and g == 255 and r > 0 then
-		r = r - 1
-	end
-	if r == 0 and b == 255 and g > 0 then
-		g = g - 1
-	end
-	if r == 0 and g == 0 and b > 0 then
-		b = b - 1
-	end
+	-- Ok.
+    if r > 0 and b == 0 then
+        r = r - 1
+        g = g + 1
+    end
+    
+    if g > 0 and r == 0 then
+        g = g - 1
+        b = b + 1
+    end
+    
+    if b > 0 and g == 0 then
+        r = r + 1
+        b = b - 1
+    end
     
     -- Params
     local text = "SxClient"
@@ -89,15 +88,14 @@ function drawName(context)
     
     -- Write module list lol
     text = ""
-    x = 640
-    y = 1
+    y = 30
+    local x = 1
     
     for i, v in pairs(config) do
         if config[i] ~= false then
             text = MTN[i]
             y = y + 10
-            local textWidth = font:getLineLength(text, 1, false)
-            font:drawTransformed(context:getScreenContext(), text, x - textWidth, y, r, g, b, 1, 0, font:getLineLength(text, 1, false), false, textScale)
+            font:drawTransformed(context:getScreenContext(), text, x, y, r, g, b, 1, 0, font:getLineLength(text, 1, false), false, textScale)
         end
     end
 end
@@ -235,6 +233,24 @@ local function crasher()
     player:teleportTo(x, y, z)
 end
 
+local function bypassGlide(event)
+    if config.isBFlyEnabled and event:getInputHandler():getSneak() then
+        local player = minecraft.clientinstance:getLocalPlayer()
+        local pitch, yaw = player:getRotation()
+        local one = yaw + 90
+        local vX = math.cos(one * (math.pi/180)) * 0.3
+        local vZ = math.sin(one * (math.pi/180)) * 0.3
+        player:setVelocity(vX, 0, vZ)
+        
+        tickGlide = tickGlide + 1
+        if tickGlide == 15 then
+            tickGlide = 0
+            glideX, glideY, glideZ = event:getPlayer():getVelocity()
+            player:setVelocity(glideX, glideY + 0.4, glideZ)
+        end
+    end
+end
+
 local function esp(event)
     if not config.isEspEnabled then
         return
@@ -357,6 +373,7 @@ local function init(controller)
     registerSettings(controller, "isMobKillaura", "toggle.mob_killaura", "#mob_killaura_enabled")
     registerSlider(controller, "killauraDistance", "slider.killaura", "#kaDistance", "#text_box_killaura")
     registerCheat(controller, "isEspEnabled", "toggle.esp", "#esp_enabled")
+    registerCheat(controller, "isBFlyEnabled", "toggle.bfly", "#bfly_enabled")
 end
 
 hooks.addHook("MoveInputHandler.tick", cheatsMoveHook)
@@ -369,70 +386,54 @@ hooks.addHook("ClientInstance.tickInput", jetpack)
 hooks.addHook("ClientInstance.tickInput", glide)
 hooks.addHook("ClientInstance.tickInput", crasher)
 hooks.addHook("ClientInstance.renderGame", esp)
+hooks.addHook("MoveInputHandler.tick", bypassGlide)
 
--- From Xray mod.
+-- From xray mod
 function drawBox(t, x, y, z, width, height)
-    -- bottom
     t:vertex(x - width, y, z - width);
     t:vertex(x + width, y, z - width);
     t:vertex(x + width, y, z + width);
     t:vertex(x - width, y, z + width);
-
     t:vertex(x - width, y, z + width);
     t:vertex(x + width, y, z + width);
     t:vertex(x + width, y, z - width);
     t:vertex(x - width, y, z - width);
-
-    -- top
     t:vertex(x - width, y + height, z - width);
     t:vertex(x + width, y + height, z - width);
     t:vertex(x + width, y + height, z + width);
     t:vertex(x - width, y + height, z + width);
-
     t:vertex(x - width, y + height, z + width);
     t:vertex(x + width, y + height, z + width);
     t:vertex(x + width, y + height, z - width);
     t:vertex(x - width, y + height, z - width);
-
-    -- sides
     t:vertex(x - width, y, z - width);
     t:vertex(x - width, y + height, z - width);
     t:vertex(x + width, y + height, z - width);
     t:vertex(x + width, y, z - width);
-
     t:vertex(x + width, y, z - width);
     t:vertex(x + width, y + height, z - width);
     t:vertex(x - width, y + height, z - width);
     t:vertex(x - width, y, z - width);
-
-
     t:vertex(x + width, y, z - width);
     t:vertex(x + width, y + height, z - width);
     t:vertex(x + width, y + height, z + width);
     t:vertex(x + width, y, z + width);
-
     t:vertex(x + width, y, z + width);
     t:vertex(x + width, y + height, z + width);
     t:vertex(x + width, y + height, z - width);
     t:vertex(x + width, y, z - width);
-
-
     t:vertex(x + width, y, z + width);
     t:vertex(x + width, y + height, z + width);
     t:vertex(x - width, y + height, z + width);
     t:vertex(x - width, y, z + width);
-
     t:vertex(x - width, y, z + width);
     t:vertex(x - width, y + height, z + width);
     t:vertex(x + width, y + height, z + width);
     t:vertex(x + width, y, z + width);
-
-
     t:vertex(x - width, y, z + width);
     t:vertex(x - width, y + height, z + width);
     t:vertex(x - width, y + height, z - width);
     t:vertex(x - width, y, z - width);
-
     t:vertex(x - width, y, z - width);
     t:vertex(x - width, y + height, z - width);
     t:vertex(x - width, y + height, z + width);

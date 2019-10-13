@@ -91,6 +91,7 @@ toolbox.menu.cheats.player.jetpack=JetPack
 toolbox.menu.cheats.player.glide=Glide
 toolbox.menu.cheats.player.airjump=AirJump
 toolbox.menu.cheats.player.esp=ESP
+toolbox.menu.cheats.player.bfly=Bypass Glide
 
 toolbox.menu.cheats.exploits=Exploits
 toolbox.menu.cheats.exploits.crasher=ServerCrasher

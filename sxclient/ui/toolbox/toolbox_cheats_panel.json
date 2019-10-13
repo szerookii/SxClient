@@ -119,6 +119,13 @@
         }
       },
       {
+        "bfly@tb_common.toggle_with_label": {
+          "$label_text": "toolbox.menu.cheats.player.bfly",
+          "$toggle_name": "toggle.bfly",
+          "$toggle_state_binding_name": "#bfly_enabled"
+        }
+      },
+      {
         "padding@tb_common.padding": {}
       },
       {
