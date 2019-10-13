@@ -9,7 +9,7 @@ SxClient is mod for Toolbox designed for enchance player' gaming experience
 
 ### Installation
 
-In Apk Editor select Toolbox APK, click on `Full edit`, then go to `assets/legacy/<the version before your>/mods/lua_mods/toolbox_menu/` and replace all folders with SxClient folders.
+In Apk Editor select Toolbox APK, click on `Full edit`, then go to `assets/legacy/<the version before your>/mods/lua_mods/toolbox_menu/` and replace all folders with SxClient's folders.
 Finally, click build and then install it and start it.
 
 ## Contributors
