@@ -1,3 +1,31 @@
+toolbox.menu.cheats=Hacks
+toolbox.menu.cheats.settings=Hacks settings
+toolbox.menu.cheats.player=Player
+toolbox.menu.cheats.player.auto_walk=Automatically walk
+toolbox.menu.cheats.player.immortality=Immortality
+toolbox.menu.cheats.player.tap_teleport=Tap TP
+toolbox.menu.cheats.player.high_jump=HighJump
+toolbox.menu.cheats.player.one_tap_stack=One-tap stack
+toolbox.menu.cheats.player.autosprint=ToggleSprint
+toolbox.menu.cheats.player.twerk=Twerk
+toolbox.menu.cheats.player.jetpack=JetPack
+toolbox.menu.cheats.player.glide=Glide
+toolbox.menu.cheats.player.airjump=AirJump
+toolbox.menu.cheats.player.esp=ESP
+toolbox.menu.cheats.player.bfly=Bypass Glide
+toolbox.menu.cheats.player.ai=AirInfinity
+toolbox.menu.cheats.player.ns=NoSlowDown
+
+toolbox.menu.cheats.exploits=Exploits
+toolbox.menu.cheats.exploits.crasher=ServerCrasher
+
+toolbox.menu.cheats.combat=Combat
+toolbox.menu.cheats.combat.killaura=Killaura
+toolbox.menu.cheats.combat.mob_killaura=Killaura affect mobs
+toolbox.menu.cheats.combat.aimbot=Aimbot
+toolbox.menu.cheats.combat.instakill=Instakill (Survival)
+toolbox.menu.cheats.combat.auto_leave=Leave when < 8 hearts left
+
 toolbox.menu.cancel=Cancel
 toolbox.menu.add=Add
 toolbox.menu.remove=Remove
@@ -76,33 +104,6 @@ toolbox.menu.mods.waypoints=Render Waypoints
 toolbox.menu.mods.treecapitator=Enable TreeCapitator
 toolbox.menu.mods.armor_hud=Show armor hud
 toolbox.menu.mods.health_bars=Render health bars
-
-toolbox.menu.cheats=Hacks
-toolbox.menu.cheats.settings=Hacks settings
-toolbox.menu.cheats.player=Player
-toolbox.menu.cheats.player.auto_walk=Automatically walk
-toolbox.menu.cheats.player.immortality=Immortality
-toolbox.menu.cheats.player.tap_teleport=Tap TP
-toolbox.menu.cheats.player.high_jump=HighJump
-toolbox.menu.cheats.player.one_tap_stack=One-tap stack
-toolbox.menu.cheats.player.autosprint=ToggleSprint
-toolbox.menu.cheats.player.twerk=Twerk
-toolbox.menu.cheats.player.jetpack=JetPack
-toolbox.menu.cheats.player.glide=Glide
-toolbox.menu.cheats.player.airjump=AirJump
-toolbox.menu.cheats.player.esp=ESP
-toolbox.menu.cheats.player.bfly=Bypass Glide
-toolbox.menu.cheats.player.ai=AirInfinity
-
-toolbox.menu.cheats.exploits=Exploits
-toolbox.menu.cheats.exploits.crasher=ServerCrasher
-
-toolbox.menu.cheats.combat=Combat
-toolbox.menu.cheats.combat.killaura=Killaura
-toolbox.menu.cheats.combat.mob_killaura=Killaura affect mobs
-toolbox.menu.cheats.combat.aimbot=Aimbot
-toolbox.menu.cheats.combat.instakill=Instakill (Survival)
-toolbox.menu.cheats.combat.auto_leave=Leave when < 8 hearts left
 
 toolbox.menu.rapid_build=Rapid build
 toolbox.menu.rapid_build.enable=Enable rapid build

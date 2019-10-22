@@ -13,6 +13,7 @@ config.isCrasherEnabled = false
 config.isEspEnabled = false
 config.isBFlyEnabled = false
 config.isAiEnabled = false
+config.isNsEnabled = false
 
 settings = {}
 settings.isMobKillaura = true
@@ -34,6 +35,7 @@ MTN.isCrasherEnabled = "ServerCrasher"
 MTN.isEspEnabled = "ESP"
 MTN.isBFlyEnabled = "Bypass Glide [SNEAK]"
 MTN.isAiEnabled = "AirInfinity"
+MTN.isNsEnabled = "NoSlowDown"
 
 local presets = { 3, 4, 5, 6, 7, 8, 9, 10 }
 local tickJet = 0
@@ -287,6 +289,15 @@ local function ai(event)
     end
 end
 
+local function ns()
+    if config.isNsEnabled then
+        local player = minecraft.clientinstance:getLocalPlayer()
+        local vX, vY, vZ = player:getVelocity()
+        
+        player:setVelocity(vX, 0, vZ)
+    end
+end
+
 local function esp(event)
     if not config.isEspEnabled then
         return
@@ -411,6 +422,7 @@ local function init(controller)
     registerCheat(controller, "isEspEnabled", "toggle.esp", "#esp_enabled")
     registerCheat(controller, "isBFlyEnabled", "toggle.bfly", "#bfly_enabled")
     registerCheat(controller, "isAiEnabled", "toggle.ai", "#ai_enabled")
+    registerCheat(controller, "isNsEnabled", "toggle.ns", "#ns_enabled")
 end
 
 hooks.addHook("MoveInputHandler.tick", cheatsMoveHook)
@@ -422,7 +434,7 @@ hooks.addHook("ClientInstance.renderGui", renderTradeHook)
 hooks.addHook("ClientInstance.tickInput", jetpack)
 hooks.addHook("ClientInstance.tickInput", glide)
 hooks.addHook("ClientInstance.tickInput", crasher)
-hooks.addHook("ClientInstance.tickInput", aimbot)
+hooks.addHook("ClientInstance.tickInput", ns)
 hooks.addHook("ClientInstance.renderGame", esp)
 hooks.addHook("MoveInputHandler.tick", bypassGlide)
 hooks.addHook("MoveInputHandler.tick", ai)

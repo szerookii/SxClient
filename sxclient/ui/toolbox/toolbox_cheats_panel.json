@@ -133,6 +133,13 @@
         }
       },
       {
+        "ns@tb_common.toggle_with_label": {
+          "$label_text": "toolbox.menu.cheats.player.ns",
+          "$toggle_name": "toggle.ns",
+          "$toggle_state_binding_name": "#ns_enabled"
+        }
+      },
+      {
         "padding@tb_common.padding": {}
       },
       {
