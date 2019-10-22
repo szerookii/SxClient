@@ -260,25 +260,19 @@ local function ai(event)
         local cX, cY, cZ = player:getVelocity()
         local pX, pY, pZ = player:getPos()
         
-        if event:getInputHandler():getUp() and event:getInputHandler():getRight() and not event:getInputHandler():getLeft() then
+        if event:getInputHandler():getUpright() then
             yaw = yaw + 45
-        end
-        if event:getInputHandler():getUp() and not event:getInputHandler():getRight() and event:getInputHandler():getLeft() then
+        elseif event:getInputHandler():getUpleft() then
             yaw = yaw - 45
-        end
-        if event:getInputHandler():getDown() and event:getInputHandler():getRight() and not event:getInputHandler():getLeft() then
+        elseif event:getInputHandler():getDown() and event:getInputHandler():getRight() and not event:getInputHandler():getLeft() then
             yaw = yaw + 135
-        end
-        if event:getInputHandler():getDown() and not event:getInputHandler():getRight() and event:getInputHandler():getLeft() then
+        elseif event:getInputHandler():getDown() and not event:getInputHandler():getRight() and event:getInputHandler():getLeft() then
             yaw = yaw - 135
-        end
-        if event:getInputHandler():getDown() then
+        elseif event:getInputHandler():getDown() then
             yaw = yaw + 180
-        end
-        if event:getInputHandler():getRight() and not event:getInputHandler():getLeft() then
+        elseif event:getInputHandler():getRight() and not event:getInputHandler():getLeft() then
             yaw = yaw + 90
-        end
-        if not event:getInputHandler():getRight() and event:getInputHandler():getLeft() then
+        elseif not event:getInputHandler():getRight() and event:getInputHandler():getLeft() then
             yaw = yaw - 90
         end
         
