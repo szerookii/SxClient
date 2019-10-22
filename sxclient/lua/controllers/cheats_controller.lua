@@ -12,6 +12,7 @@ config.isGlideEnabled = false
 config.isCrasherEnabled = false
 config.isEspEnabled = false
 config.isBFlyEnabled = false
+config.isAiEnabled = false
 
 settings = {}
 settings.isMobKillaura = true
@@ -32,6 +33,7 @@ MTN.isAirjumpEnabled = "AirJump"
 MTN.isCrasherEnabled = "ServerCrasher"
 MTN.isEspEnabled = "ESP"
 MTN.isBFlyEnabled = "Bypass Glide [SNEAK]"
+MTN.isAiEnabled = "AirInfinity"
 
 local presets = { 3, 4, 5, 6, 7, 8, 9, 10 }
 local tickJet = 0
@@ -121,8 +123,8 @@ local function cheatsMoveHook(event)
         player:setVelocity(vX, 0.42, vZ)
     end
     if config.isTwerkEnabled then
-        event:getInputHandler():setToggleSneak(true)
-        event:getInputHandler():setToggleSneak(false)
+        event:getInputHandler():setSneak(true)
+        event:getInputHandler():setSneak(false)
     end
     if config.isAutoSprintEnabled then
         event:getInputHandler():setSprint(true)
@@ -251,6 +253,46 @@ local function bypassGlide(event)
     end
 end
 
+local function ai(event)
+    if config.isAiEnabled then
+        local player = minecraft.clientinstance:getLocalPlayer()
+        local pitch, yaw = player:getRotation()
+        local cX, cY, cZ = player:getVelocity()
+        local pX, pY, pZ = player:getPos()
+        
+        if event:getInputHandler():getUp() and event:getInputHandler():getRight() and not event:getInputHandler():getLeft() then
+            yaw = yaw + 45
+        end
+        if event:getInputHandler():getUp() and not event:getInputHandler():getRight() and event:getInputHandler():getLeft() then
+            yaw = yaw - 45
+        end
+        if event:getInputHandler():getDown() and event:getInputHandler():getRight() and not event:getInputHandler():getLeft() then
+            yaw = yaw + 135
+        end
+        if event:getInputHandler():getDown() and not event:getInputHandler():getRight() and event:getInputHandler():getLeft() then
+            yaw = yaw - 135
+        end
+        if event:getInputHandler():getDown() then
+            yaw = yaw + 180
+        end
+        if event:getInputHandler():getRight() and not event:getInputHandler():getLeft() then
+            yaw = yaw + 90
+        end
+        if not event:getInputHandler():getRight() and event:getInputHandler():getLeft() then
+            yaw = yaw - 90
+        end
+        
+        local cYaw = (yaw + 90) * (math.pi / 180)
+        local cPitch = (pitch) * -(math.pi / 180)
+        local vX = math.cos(cYaw) * 0.4
+        local vZ = math.sin(cYaw) * 0.4
+        
+        if event:getInputHandler():getUp() or event:getInputHandler():getDown() or event:getInputHandler():getRight() or event:getInputHandler():getLeft() then
+           player:setVelocity(vX, cY, vZ)
+        end
+    end
+end
+
 local function esp(event)
     if not config.isEspEnabled then
         return
@@ -374,6 +416,7 @@ local function init(controller)
     registerSlider(controller, "killauraDistance", "slider.killaura", "#kaDistance", "#text_box_killaura")
     registerCheat(controller, "isEspEnabled", "toggle.esp", "#esp_enabled")
     registerCheat(controller, "isBFlyEnabled", "toggle.bfly", "#bfly_enabled")
+    registerCheat(controller, "isAiEnabled", "toggle.ai", "#ai_enabled")
 end
 
 hooks.addHook("MoveInputHandler.tick", cheatsMoveHook)
@@ -385,8 +428,10 @@ hooks.addHook("ClientInstance.renderGui", renderTradeHook)
 hooks.addHook("ClientInstance.tickInput", jetpack)
 hooks.addHook("ClientInstance.tickInput", glide)
 hooks.addHook("ClientInstance.tickInput", crasher)
+hooks.addHook("ClientInstance.tickInput", aimbot)
 hooks.addHook("ClientInstance.renderGame", esp)
 hooks.addHook("MoveInputHandler.tick", bypassGlide)
+hooks.addHook("MoveInputHandler.tick", ai)
 
 -- From xray mod
 function drawBox(t, x, y, z, width, height)

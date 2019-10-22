@@ -92,6 +92,7 @@ toolbox.menu.cheats.player.glide=Glide
 toolbox.menu.cheats.player.airjump=AirJump
 toolbox.menu.cheats.player.esp=ESP
 toolbox.menu.cheats.player.bfly=Bypass Glide
+toolbox.menu.cheats.player.ai=AirInfinity
 
 toolbox.menu.cheats.exploits=Exploits
 toolbox.menu.cheats.exploits.crasher=ServerCrasher
@@ -99,6 +100,7 @@ toolbox.menu.cheats.exploits.crasher=ServerCrasher
 toolbox.menu.cheats.combat=Combat
 toolbox.menu.cheats.combat.killaura=Killaura
 toolbox.menu.cheats.combat.mob_killaura=Killaura affect mobs
+toolbox.menu.cheats.combat.aimbot=Aimbot
 toolbox.menu.cheats.combat.instakill=Instakill (Survival)
 toolbox.menu.cheats.combat.auto_leave=Leave when < 8 hearts left
 

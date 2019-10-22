@@ -126,6 +126,13 @@
         }
       },
       {
+        "ai@tb_common.toggle_with_label": {
+          "$label_text": "toolbox.menu.cheats.player.ai",
+          "$toggle_name": "toggle.ai",
+          "$toggle_state_binding_name": "#ai_enabled"
+        }
+      },
+      {
         "padding@tb_common.padding": {}
       },
       {
