@@ -15,6 +15,7 @@ config.isBFlyEnabled = false
 config.isAiEnabled = false
 config.isNsEnabled = false
 config.isTapRideEnabled = false
+config.isKBEnabled = false
 
 settings = {}
 settings.isMobKillaura = true
@@ -38,6 +39,7 @@ MTN.isBFlyEnabled = "Bypass Glide [SNEAK]"
 MTN.isAiEnabled = "AirInfinity"
 MTN.isNsEnabled = "NoSlowDown"
 MTN.isTapRideEnabled = "TapRide"
+MTN.isKBEnabled = "NoKnockBack"
 
 local presets = { 3, 4, 5, 6, 7, 8, 9, 10 }
 local tickJet = 0
@@ -301,10 +303,26 @@ local function tapride(event)
         local player = minecraft.clientinstance:getLocalPlayer()
         local victim = event:getActor()
         local source = event:getDamageSource()
-        local attackerUuid = source:getDamagingActorUniqueID()
         
-        if attackerUuid == player:getUniqueID() then
-            victim:addRider(player)
+        if source:isActorSource() then
+            local attackerUuid = source:getDamagingActorUniqueID()
+            local pUuid = player:getUniqueID()
+            
+            if attackerUuid == pUuid then
+                if victim:canAddRider(player) then
+                    victim:addRider(player)
+                end
+            end
+        end
+    end
+end
+
+local function kb(event)
+    if config.isKBEnabled then
+        local player = minecraft.clientinstance:getLocalPlayer()
+        
+        if event:getActor() == player then
+            player:setVelocity(0, 0, 0) -- I can't set immobile..
         end
     end
 end
@@ -315,6 +333,14 @@ local function ff()
         local abilities = player:getAbilities()
         abilities:setAbility("flying", true)
     end
+end
+
+local function registerCommands(event)
+    local reg = event:getCommandRegistry()
+    reg:registerCommand("killaura", "Enable killaura", 0)
+    reg:registerOverload("killaura", function(args)
+        config.isFFEnabled = true
+    end)
 end
 
 local function esp(event)
@@ -443,6 +469,7 @@ local function init(controller)
     registerCheat(controller, "isAiEnabled", "toggle.ai", "#ai_enabled")
     registerCheat(controller, "isNsEnabled", "toggle.ns", "#ns_enabled")
     registerCheat(controller, "isTapRideEnabled", "toggle.tapride", "#tapride_enabled")
+    registerCheat(controller, "isKBEnabled", "toggle.kb", "#kb_enabled")
 end
 
 hooks.addHook("MoveInputHandler.tick", cheatsMoveHook)
@@ -459,7 +486,9 @@ hooks.addHook("ClientInstance.renderGame", esp)
 hooks.addHook("MoveInputHandler.tick", bypassGlide)
 hooks.addHook("MoveInputHandler.tick", ai)
 hooks.addHook("Actor.hurt", tapride)
+hooks.addHook("Actor.hurt", kb)
 hooks.addHook("ClientInstance.tickInput", ff)
+hooks.addHook("CommandRegistry.setupCommands", registerCommands)
 
 -- From xray mod
 function drawBox(t, x, y, z, width, height)

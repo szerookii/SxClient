@@ -147,6 +147,13 @@
         }
       },
       {
+        "kb@tb_common.toggle_with_label": {
+          "$label_text": "toolbox.menu.cheats.player.kb",
+          "$toggle_name": "toggle.kb",
+          "$toggle_state_binding_name": "#kb_enabled"
+        }
+      },
+      {
         "padding@tb_common.padding": {}
       },
       {

@@ -16,6 +16,7 @@ toolbox.menu.cheats.player.bfly=Bypass Glide
 toolbox.menu.cheats.player.ai=AirInfinity
 toolbox.menu.cheats.player.ns=NoSlowDown
 toolbox.menu.cheats.player.tapride=TapRide
+toolbox.menu.cheats.player.kb=NoKnockBack
 
 toolbox.menu.cheats.exploits=Exploits
 toolbox.menu.cheats.exploits.crasher=ServerCrasher
