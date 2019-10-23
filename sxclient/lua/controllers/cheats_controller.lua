@@ -304,7 +304,7 @@ local function tapride(event)
         local attackerUuid = source:getDamagingActorUniqueID()
         
         if attackerUuid == player:getUniqueID() then
-            victim:addRider(player) -- Not actually work
+            victim:addRider(player)
         end
     end
 end
