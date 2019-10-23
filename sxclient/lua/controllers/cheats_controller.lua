@@ -293,7 +293,6 @@ local function ns()
         local vX, vY, vZ = player:getVelocity()
         
         player:setVelocity(vX, 0, vZ)
-        minecraft.clientinputcallbacks:handleToggleSimulateTouchButtonPress()
     end
 end
 
