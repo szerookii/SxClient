@@ -5,7 +5,7 @@ config.isHighJumpEnabled = false
 config.isImmortalityEnabled = false
 config.isInstakillEnabled = false
 config.isTapTeleportEnabled = false
-config.isTwerkEnabled = false
+config.isFFEnabled = false
 config.isKillauraEnabled = false
 config.isJetpackEnabled = false
 config.isGlideEnabled = false
@@ -14,6 +14,7 @@ config.isEspEnabled = false
 config.isBFlyEnabled = false
 config.isAiEnabled = false
 config.isNsEnabled = false
+config.isTapRideEnabled = false
 
 settings = {}
 settings.isMobKillaura = true
@@ -26,7 +27,7 @@ MTN.isHighJumpEnabled = "HighJump"
 MTN.isImmortalityEnabled = "Immortality"
 MTN.isInstakillEnabled = "InstaKill"
 MTN.isTapTeleportEnabled = "TapTP"
-MTN.isTwerkEnabled = "Twerk"
+MTN.isFFEnabled = "ForceFly"
 MTN.isKillauraEnabled = "KillAura"
 MTN.isJetpackEnabled = "JetPack"
 MTN.isGlideEnabled = "Glide"
@@ -36,6 +37,7 @@ MTN.isEspEnabled = "ESP"
 MTN.isBFlyEnabled = "Bypass Glide [SNEAK]"
 MTN.isAiEnabled = "AirInfinity"
 MTN.isNsEnabled = "NoSlowDown"
+MTN.isTapRideEnabled = "TapRide"
 
 local presets = { 3, 4, 5, 6, 7, 8, 9, 10 }
 local tickJet = 0
@@ -123,10 +125,6 @@ local function cheatsMoveHook(event)
         local player = minecraft.clientinstance:getLocalPlayer()
         local vX, vY, vZ = player:getVelocity()
         player:setVelocity(vX, 0.42, vZ)
-    end
-    if config.isTwerkEnabled then
-        event:getInputHandler():setSneak(true)
-        event:getInputHandler():setSneak(false)
     end
     if config.isAutoSprintEnabled then
         event:getInputHandler():setSprint(true)
@@ -295,6 +293,28 @@ local function ns()
         local vX, vY, vZ = player:getVelocity()
         
         player:setVelocity(vX, 0, vZ)
+        minecraft.clientinputcallbacks:handleToggleSimulateTouchButtonPress()
+    end
+end
+
+local function tapride(event)
+    if config.isTapRideEnabled then
+        local player = minecraft.clientinstance:getLocalPlayer()
+        local victim = event:getActor()
+        local source = event:getDamageSource()
+        local attackerUuid = source:getDamagingActorUniqueID()
+        
+        if attackerUuid == player:getUniqueID() then
+            victim:addRider(player) -- Not actually work
+        end
+    end
+end
+
+local function ff()
+    if config.isFFEnabled then
+        local player = minecraft.clientinstance:getLocalPlayer()
+        local abilities = player:getAbilities()
+        abilities:setAbility("flying", true)
     end
 end
 
@@ -410,7 +430,7 @@ local function init(controller)
     registerServerCheat(controller, "isImmortalityEnabled", "toggle.immortality", "#immortality_enabled", "immortality")
     registerCheat(controller, "isTapTeleportEnabled", "toggle.tap_teleport", "#tap_teleport_enabled")
     registerCheat(controller, "isAutoSprintEnabled", "toggle.auto_sprint", "#auto_sprint_enabled")
-    registerCheat(controller, "isTwerkEnabled", "toggle.twerk", "#twerk_enabled")
+    registerCheat(controller, "isFFEnabled", "toggle.ff", "#ff_enabled")
     registerCheat(controller, "isJetpackEnabled", "toggle.jetpack", "#jetpack_enabled")
     registerCheat(controller, "isGlideEnabled", "toggle.glide", "#glide_enabled")
     registerCheat(controller, "isAirjumpEnabled", "toggle.airjump", "#airjump_enabled")
@@ -423,6 +443,7 @@ local function init(controller)
     registerCheat(controller, "isBFlyEnabled", "toggle.bfly", "#bfly_enabled")
     registerCheat(controller, "isAiEnabled", "toggle.ai", "#ai_enabled")
     registerCheat(controller, "isNsEnabled", "toggle.ns", "#ns_enabled")
+    registerCheat(controller, "isTapRideEnabled", "toggle.tapride", "#tapride_enabled")
 end
 
 hooks.addHook("MoveInputHandler.tick", cheatsMoveHook)
@@ -438,6 +459,8 @@ hooks.addHook("ClientInstance.tickInput", ns)
 hooks.addHook("ClientInstance.renderGame", esp)
 hooks.addHook("MoveInputHandler.tick", bypassGlide)
 hooks.addHook("MoveInputHandler.tick", ai)
+hooks.addHook("Actor.hurt", tapride)
+hooks.addHook("ClientInstance.tickInput", ff)
 
 -- From xray mod
 function drawBox(t, x, y, z, width, height)

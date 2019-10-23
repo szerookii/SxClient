@@ -84,10 +84,10 @@
         }
       },
       {
-        "twerk@tb_common.toggle_with_label": {
-          "$label_text": "toolbox.menu.cheats.player.twerk",
-          "$toggle_name": "toggle.twerk",
-          "$toggle_state_binding_name": "#twerk_enabled"
+        "ff@tb_common.toggle_with_label": {
+          "$label_text": "toolbox.menu.cheats.player.ff",
+          "$toggle_name": "toggle.ff",
+          "$toggle_state_binding_name": "#ff_enabled"
         }
       },
       {
@@ -137,6 +137,13 @@
           "$label_text": "toolbox.menu.cheats.player.ns",
           "$toggle_name": "toggle.ns",
           "$toggle_state_binding_name": "#ns_enabled"
+        }
+      },
+      {
+        "taperide@tb_common.toggle_with_label": {
+          "$label_text": "toolbox.menu.cheats.player.tapride",
+          "$toggle_name": "toggle.tapride",
+          "$toggle_state_binding_name": "#tapride_enabled"
         }
       },
       {

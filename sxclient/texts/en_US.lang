@@ -7,7 +7,7 @@ toolbox.menu.cheats.player.tap_teleport=Tap TP
 toolbox.menu.cheats.player.high_jump=HighJump
 toolbox.menu.cheats.player.one_tap_stack=One-tap stack
 toolbox.menu.cheats.player.autosprint=ToggleSprint
-toolbox.menu.cheats.player.twerk=Twerk
+toolbox.menu.cheats.player.ff=ForceFly
 toolbox.menu.cheats.player.jetpack=JetPack
 toolbox.menu.cheats.player.glide=Glide
 toolbox.menu.cheats.player.airjump=AirJump
@@ -15,6 +15,7 @@ toolbox.menu.cheats.player.esp=ESP
 toolbox.menu.cheats.player.bfly=Bypass Glide
 toolbox.menu.cheats.player.ai=AirInfinity
 toolbox.menu.cheats.player.ns=NoSlowDown
+toolbox.menu.cheats.player.tapride=TapRide
 
 toolbox.menu.cheats.exploits=Exploits
 toolbox.menu.cheats.exploits.crasher=ServerCrasher
