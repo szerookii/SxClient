@@ -46,6 +46,7 @@ local tickJet = 0
 local tickNum = 0
 local tickNumMob = 0
 local tickGlide = 0
+local playerhealth = 20
 local playerx, playery, playerz = 0, 0, 0
 local velx, vely, velz = 0, 0, 0
 
@@ -324,14 +325,14 @@ local function kb(event)
 
         local player = minecraft.clientinstance:getLocalPlayer()
 
-        if event:getActor() == player then
+        if playerhealth > player:getHealth() then
             player:setPos(playerx, playery, playerz)
             player:setVelocity(velx, vely, velz)
-        end
-        
-        playerx, playery, playerz = player:getPos()
-        velx, vely, velz = player:getVelocity()	
+        end	
     end
+    playerhealth = player:getHealth()
+    playerx, playery, playerz = player:getPos()
+    velx, vely, velz = player:getVelocity()
 end
 
 local function ff()
@@ -493,7 +494,7 @@ hooks.addHook("ClientInstance.renderGame", esp)
 hooks.addHook("MoveInputHandler.tick", bypassGlide)
 hooks.addHook("MoveInputHandler.tick", ai)
 hooks.addHook("Actor.hurt", tapride)
-hooks.addHook("Actor.hurt", kb)
+hooks.addHook("ClientInstance.tickInput", kb)
 hooks.addHook("ClientInstance.tickInput", ff)
 hooks.addHook("CommandRegistry.setupCommands", registerCommands)
 
