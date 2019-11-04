@@ -366,7 +366,7 @@ local function esp(event)
     local level = minecraft.clientinstance:getLevel()
     local t = context:getTessellator()
     t:begin()
-    t:color(r, g, b, 0.7);
+    t:color(r, g, b, 0.5);
     level:forEachPlayer(function(player)
         if player ~= localPlayer then
             local posX, posY, posZ = player:getInterpolatedPos(context:getDeltaTime())
