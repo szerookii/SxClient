@@ -46,6 +46,9 @@ local tickJet = 0
 local tickNum = 0
 local tickNumMob = 0
 local tickGlide = 0
+local playerhealth = 20
+local playerx, playery, playerz = 0, 0, 0
+local velx, vely, velz = 0, 0, 0
 
 local r = 255
 local g = 0
@@ -319,12 +322,17 @@ end
 
 local function kb(event)
     if config.isKBEnabled then
+
         local player = minecraft.clientinstance:getLocalPlayer()
-        
-        if event:getActor() == player then
-            player:setVelocity(0, 0, 0) -- I can't set immobile..
-        end
+
+        if playerhealth > player:getHealth() then
+            player:setPos(playerx, playery, playerz)
+            player:setVelocity(velx, vely, velz)
+        end	
     end
+    playerhealth = player:getHealth()
+    playerx, playery, playerz = player:getPos()
+    velx, vely, velz = player:getVelocity()
 end
 
 local function ff()
@@ -359,7 +367,7 @@ local function esp(event)
     local level = minecraft.clientinstance:getLevel()
     local t = context:getTessellator()
     t:begin()
-    t:color(r, g, b, 0.2);
+    t:color(r, g, b, 0.5);
     level:forEachPlayer(function(player)
         if player ~= localPlayer then
             local posX, posY, posZ = player:getInterpolatedPos(context:getDeltaTime())
@@ -486,7 +494,7 @@ hooks.addHook("ClientInstance.renderGame", esp)
 hooks.addHook("MoveInputHandler.tick", bypassGlide)
 hooks.addHook("MoveInputHandler.tick", ai)
 hooks.addHook("Actor.hurt", tapride)
-hooks.addHook("Actor.hurt", kb)
+hooks.addHook("ClientInstance.tickInput", kb)
 hooks.addHook("ClientInstance.tickInput", ff)
 hooks.addHook("CommandRegistry.setupCommands", registerCommands)
 
