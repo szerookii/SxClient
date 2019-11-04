@@ -46,7 +46,6 @@ local tickJet = 0
 local tickNum = 0
 local tickNumMob = 0
 local tickGlide = 0
-local playerhealth = 20
 local playerx, playery, playerz = 0, 0, 0
 local velx, vely, velz = 0, 0, 0
 
@@ -325,14 +324,13 @@ local function kb(event)
 
         local player = minecraft.clientinstance:getLocalPlayer()
 
-        if playerhealth > player:getHealth() then
+        if event:getActor() == player then
             player:setPos(playerx, playery, playerz)
             player:setVelocity(velx, vely, velz)
         end
         
-        playerhealth = player:getHealth()
-	playerx, playery, playerz = player:getPos()
-	velx, vely, velz = player:getVelocity()	
+        playerx, playery, playerz = player:getPos()
+        velx, vely, velz = player:getVelocity()	
     end
 end
 
