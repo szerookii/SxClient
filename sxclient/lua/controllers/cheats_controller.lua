@@ -48,6 +48,7 @@ local tickNumMob = 0
 local tickGlide = 0
 local playerhealth = minecraft.clientinstance:getLocalPlayer():getHealth()
 local playerx, playery, playerz = minecraft.clientinstance:getLocalPlayer():getPos()
+local velx, vely, velz = minecraft.clientinstance:getLocalPlayer():getVelocity()
 
 local r = 255
 local g = 0
@@ -324,10 +325,12 @@ local function kb()
     if config.isKBEnabled then
         if playerhealth > player:getHealth() then
             player:setPos(playerx, playery, playerz)
+            player:setVelocity(velx, vely, velz)
         end	
     end
     playerhealth = player:getHealth()
     playerx, playery, playerz = player:getPos()
+    velx, vely, velz = player:getVelocity()
 end
 
 local function ff()
