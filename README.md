@@ -1,6 +1,6 @@
 # SxClient
 
-SxClient is mod for Toolbox designed for enchance player' gaming experience
+SxClient is mod for Toolbox designed for enchance player' gaming experience.
 
 ### Prerequisites
 
