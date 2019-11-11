@@ -46,9 +46,9 @@ local tickJet = 0
 local tickNum = 0
 local tickNumMob = 0
 local tickGlide = 0
-local playerhealth = minecraft.clientinstance:getLocalPlayer():getHealth()
-local playerx, playery, playerz = minecraft.clientinstance:getLocalPlayer():getPos()
-local velx, vely, velz = minecraft.clientinstance:getLocalPlayer():getVelocity()
+local playerhealth = 20
+local playerx, playery, playerz = 0, 0, 0
+local velx, vely, velz = 0, 0, 0
 
 local r = 255
 local g = 0
@@ -320,9 +320,11 @@ local function tapride(event)
     end
 end
 
-local function kb()
-    local player = minecraft.clientinstance:getLocalPlayer()
+local function kb(event)
     if config.isKBEnabled then
+
+        local player = minecraft.clientinstance:getLocalPlayer()
+
         if playerhealth > player:getHealth() then
             player:setPos(playerx, playery, playerz)
             player:setVelocity(velx, vely, velz)
