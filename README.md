@@ -14,4 +14,4 @@ Finally, click build, and then install it and start it.
 
 ## Thanks
 
-**MCMrARM** https://github.com/McMrARM  - He created Toolbox.
+**MCMrARM** https://github.com/McMrARM  - He created Toolbox
