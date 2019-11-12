@@ -4,8 +4,8 @@ SxClient is mod for Toolbox designed for enchance players' gaming experience.
 
 ## Prerequisites
 
-- Toolbox
-- Apk Editor
+-   Toolbox
+-   Apk Editor
 
 ## How to inject
 
