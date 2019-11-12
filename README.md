@@ -1,4 +1,4 @@
-# SxClient [![Codacy Badge](https://img.shields.io/codacy/grade/a8c1e0a4242d4da39762bc231c2c8c48?style=for-the-badge)](https://www.codacy.com/manual/SxClient/SxClient) [!(https://img.shields.io/badge/Download-Latest%20APK-brightgreen)](http://sxclient.seyz.me:8086/download)
+# SxClient [![Codacy Badge](https://img.shields.io/codacy/grade/a8c1e0a4242d4da39762bc231c2c8c48?style=for-the-badge)](https://www.codacy.com/manual/SxClient/SxClient) [![Download latest APK](https://img.shields.io/badge/Download-Latest%20APK-brightgreen)](http://sxclient.seyz.me:8086/download)
 
 
 SxClient is mod for Toolbox designed for enchance players' gaming experience.
