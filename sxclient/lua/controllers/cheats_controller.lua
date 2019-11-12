@@ -1,3 +1,4 @@
+local floatingsButtons = require "floating_buttons"
 local config = {}
 config.isAutoWalkEnabled = false
 config.isAutoSprintEnabled = false
@@ -53,6 +54,13 @@ local velx, vely, velz = 0, 0, 0
 local r = 255
 local g = 0
 local b = 0
+
+-- Buttons
+local kaKey = floatingsButtons.addButton(20, 40, 16, "textures/killaura", true)
+function kaKey:onClick()
+    config["isKillauraEnabled"] = not config["isKillauraEnabled"]
+end
+
 
 function drawName(context)
     local font = context:getFont()
