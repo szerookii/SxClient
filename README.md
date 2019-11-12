@@ -1,4 +1,4 @@
-# SxClient
+# SxClient [![Codacy Badge](https://api.codacy.com/project/badge/Grade/f278b59be58d46168aff3c628af025c9)](https://www.codacy.com/manual/Seyz123/SxClient?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Seyz123/SxClient&amp;utm_campaign=Badge_Grade)
 
 SxClient is mod for Toolbox designed for enchance players' gaming experience.
 
