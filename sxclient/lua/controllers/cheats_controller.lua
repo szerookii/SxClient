@@ -56,7 +56,7 @@ local g = 0
 local b = 0
 
 -- Buttons
-local kaKey = floatingsButtons.addButton(20, 40, 16, "textures/killaura", true)
+local kaKey = floatingsButtons.addButton(20, 40, 16, "textures/gui/killaura", true)
 function kaKey:onClick()
     config["isKillauraEnabled"] = not config["isKillauraEnabled"]
 end
