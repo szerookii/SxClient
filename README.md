@@ -6,7 +6,7 @@ SxClient is mod for Toolbox designed for enchance players' gaming experience.
 ## Prerequisites
 
 -   [Toolbox](https://play.google.com/store/apps/details?id=io.mrarm.mctoolbox)
--   [Apk Editor](http://www.mediafire.com/file/bsktdr7asf43leu/APK_Editor_Pro.ver.1.10.0.build.121.apk/file)
+-   [Apk Editor](https://apkeditor.top/home/)
 
 ## How to build
 
